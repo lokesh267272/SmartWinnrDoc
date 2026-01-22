@@ -61,8 +61,11 @@ Environment variables are not pushed to GitHub. A `.env.example` file is provide
 <img width="1868" height="914" alt="Screenshot 2026-01-22 161647" src="https://github.com/user-attachments/assets/197ca8a0-0551-4a18-ab70-933c2e9e6e9e" />
 
 <img width="1900" height="920" alt="Screenshot 2026-01-22 161810" src="https://github.com/user-attachments/assets/4db54de1-225f-4e0b-94f3-b1d80391fc1c" />
+<img width="1900" height="903" alt="image" src="https://github.com/user-attachments/assets/c40cb2a5-40d5-4470-9304-84b1fb10ec56" />
+
 
 <img width="1914" height="886" alt="Screenshot 2026-01-22 161828" src="https://github.com/user-attachments/assets/f9d97a64-4c02-4bc7-a981-1229fc562d04" />
+
 
 <img width="296" height="914" alt="Screenshot 2026-01-22 161845" src="https://github.com/user-attachments/assets/5b87531b-b74a-451d-86a5-4dc69b05cb12" />
 
