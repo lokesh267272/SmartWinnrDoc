@@ -5,6 +5,7 @@
 - Angular v21.1.0
 - MongoDB (Mongoose v9.1.5)
 - Express.js v5.2.1
+- Tailwind CSS v4
 
 ## Features
 - User authentication with JWT
