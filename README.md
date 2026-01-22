@@ -51,6 +51,10 @@ Environment variables are not pushed to GitHub. A `.env.example` file is provide
 - Frontend: `http://localhost:4200`
 - Backend API: `http://localhost:5000`
 
+### Video
+
+https://github.com/user-attachments/assets/58fcdd11-db03-496d-ac89-f351ae74ba80
+
 ### Images
 <img width="1911" height="890" alt="image" src="https://github.com/user-attachments/assets/18b37b01-6676-4ffc-a1f9-3d21d910f9ea" />
 
