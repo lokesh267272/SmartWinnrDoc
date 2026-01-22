@@ -1,0 +1,40 @@
+<div class="absolute inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50 blur-sm-backend">
+    <div class="bg-white rounded-lg shadow-xl w-full max-w-md p-6 transform transition-all scale-100">
+        <h2 class="text-2xl font-bold text-gray-800 mb-4">{{ targetDocumentId ? 'Update Document' : 'Upload File' }}</h2>
+
+        <div class="mb-4">
+            <label class="block text-sm font-medium text-gray-700 mb-2">Select File</label>
+            
+     <input type="file" (change)="onFileSelected($event)" class="block w-full text-sm text-gray-500 file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-blue-50 file:text-blue-700 hover:file:bg-blue-100" />
+            <p *ngIf="selectedFile" class="mt-2 text-sm text-green-600">Selected: {{ selectedFile.name }}</p>
+        </div>
+
+
+
+        <div class="mb-6">
+            <label class="block text-sm font-medium text-gray-700 mb-2">Add Tags</label>
+            <div class="flex flex-wrap gap-2">
+                <button *ngFor="let tag of availableTags" (click)="toggleTagSelection(tag)"
+                    [class.bg-blue-100]="selectedTags.includes(tag)"
+                    [class.text-blue-800]="selectedTags.includes(tag)"
+                    [class.border-blue-300]="selectedTags.includes(tag)"
+                    class="px-3 py-1 rounded-full border border-gray-300 text-sm text-gray-600 hover:border-blue-400 focus:outline-none transition-colors">
+                    {{ tag }}
+                </button>
+            </div>
+        </div>
+
+
+
+        <div class="flex justify-end gap-3">
+            <button (click)="triggerClose()" class="px-4 py-2 rounded text-gray-600 hover:bg-gray-100 transition">
+                Cancel
+            </button>
+            <button (click)="submitUpload()"
+                class="px-4 py-2 rounded bg-blue-600 text-white font-semibold hover:bg-blue-700 transition disabled:opacity-50 disabled:cursor-not-allowed"
+                [disabled]="!selectedFile">
+                Upload
+            </button>
+        </div>
+    </div>
+</div>

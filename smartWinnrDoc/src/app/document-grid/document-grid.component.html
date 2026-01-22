@@ -1,0 +1,90 @@
+<div *ngIf="documents.length > 0; else noDocs" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+    <div *ngFor="let doc of documents" (click)="viewDocument(doc)"
+        class="bg-white rounded-lg shadow-sm hover:shadow-md transition-shadow duration-200 border border-gray-100 flex flex-col cursor-pointer">
+        <div class="p-4 flex items-start justify-between">
+            <div class="p-2 bg-blue-50 rounded-lg">
+
+                <!-- file icon -->
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 text-blue-500" fill="none" viewBox="0 0 24 24"
+                    stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                        d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+                </svg>
+
+
+            </div>
+            <div class="relative">
+                <button (click)="toggleMenu($event, doc._id)"
+                    class="text-gray-400 hover:text-gray-600 p-1 rounded-full hover:bg-gray-100 transition-colors">
+                    
+                    <!-- three dots icon -->
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                        <path
+                            d="M10 6a2 2 0 110-4 2 2 0 010 4zM10 12a2 2 0 110-4 2 2 0 010 4zM10 18a2 2 0 110-4 2 2 0 010 4z" />
+                    </svg>
+                </button>
+
+                <div *ngIf="activeMenuDocId === doc._id" (click)="$event.stopPropagation()"
+                    class="absolute right-0 mt-2 w-48 bg-white rounded-md shadow-lg py-1 z-10 ring-1 ring-black ring-opacity-5">
+                    <button *ngIf="!isViewer" (click)="triggerUpdateDocument($event, doc._id); activeMenuDocId = null"
+                        class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 w-full text-left flex items-center gap-2">
+                        
+                        
+                        <!-- update icon -->
+                        
+                        
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24"
+                            stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-8l-4-4m0 0L8 8m4-4v12" />
+                        </svg>
+                        Upload New Version
+                    </button>
+                    <button (click)="triggerViewHistory($event, doc); activeMenuDocId = null"
+                        class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 w-full text-left flex items-center gap-2">
+                       
+                       
+                        <!-- version history icon -->
+                       
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24"
+                            stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+                        </svg>
+                        Version History
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <div class="px-4 pb-2 flex-1">
+            <h3 class="font-semibold text-gray-800 text-lg truncate" title="{{doc.originalName}}">{{ doc.originalName }}</h3>
+
+            <div class="flex flex-wrap gap-1 mt-2">
+                <span *ngFor="let tag of doc.tags"
+                    class="inline-block bg-gray-100 text-gray-600 text-xs px-2 py-1 rounded-full border border-gray-200">
+                    {{ tag }}
+                </span>
+                <span *ngIf="doc.tags.length === 0" class="text-xs text-gray-400 italic">No tags</span>
+            </div>
+        </div>
+
+        <div class="px-4 py-3 border-t border-gray-50 flex justify-between items-center text-xs text-gray-500">
+            <span>{{ formatFileSize(doc.size) }}</span>
+            <span>{{ doc.createdAt | date:'mediumDate' }}</span>
+        </div>
+    </div>
+</div>
+
+<ng-template #noDocs>
+    <div class="bg-white rounded-lg shadow p-12 text-center">
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-16 w-16 text-gray-300 mx-auto mb-4" fill="none"
+            viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                d="M9 13h6m-3-3v6m5 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+        </svg>
+        <p class="text-gray-500 text-lg">No documents yet.</p>
+        <p class="text-gray-400 mb-6">Upload a file to see it here.</p>
+        <button (click)="triggerOpenUpload()" class="text-blue-600 hover:text-blue-800 font-medium">Upload now</button>
+    </div>
+</ng-template>
